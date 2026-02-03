@@ -1,0 +1,6 @@
+@ApiSqlAzure_HostAddress = http://localhost:5251
+
+GET {{ApiSqlAzure_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

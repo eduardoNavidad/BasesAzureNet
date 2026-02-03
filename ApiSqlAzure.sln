@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSqlAzure", "ApiSqlAzure.csproj", "{B2A34A86-1CD7-6D60-E84B-F90709B47582}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2A34A86-1CD7-6D60-E84B-F90709B47582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A34A86-1CD7-6D60-E84B-F90709B47582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A34A86-1CD7-6D60-E84B-F90709B47582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A34A86-1CD7-6D60-E84B-F90709B47582}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58013890-4B2E-47C7-BFDD-AB31440B0432}
+	EndGlobalSection
+EndGlobal
