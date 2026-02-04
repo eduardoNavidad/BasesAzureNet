@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ApiSqlAzure.Models;
+using ApiSqlAzure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<UsersContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUsersService, UsersService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 using ApiSqlAzure.Models;
+using ApiSqlAzure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,43 +7,52 @@ namespace ApiSqlAzure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
-        private UsersContext userContext;
+       
+       public readonly IUsersService _usersService;
 
-        public UsersController(UsersContext context)
-        {
-            userContext = context;
-        }
+       public UsersController(IUsersService usersService)=> _usersService = usersService;
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Users>> Get()
+       [HttpGet]
+       public async Task<IActionResult> GetAll()
         {
-            return userContext.Users.ToList();
+            var users = await _usersService.GetAllAsync();
+            return Ok(users);
         }
+        
         [HttpGet("{id}")]
-
-        public async Task<ActionResult<Users>> Get(string id)
+        public async Task<IActionResult> GetById(String id)
         {
-            var user =  await userContext.Users.FindAsync(id);
-            if (user == null)
-            {
+            var user = await _usersService.GetByIdAsync(id);
+            if(user is null)
                 return NotFound();
-            }
-
-            return user;
+                
+            return Ok(user);
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Users>>> Post([FromBody] Users users)
+        public async Task<IActionResult> Create([FromBody] Users users)
         {
-            userContext.Add(users);
-
-            await userContext.SaveChangesAsync();
-
-            return await userContext.Users.ToListAsync();
-
+            var created = await _usersService.CreateAsync(users);
+            return CreatedAtAction(nameof(GetById), new {id = created.id}, created);
         }
-        
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(string id)
+        {
+
+            var user = await _usersService.DeleteAsync(id);
+            return Ok(user);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> updateAsync([FromBody] Users users)
+        {
+            var updated = await _usersService.UpdateAsync(users);
+            return Ok(updated);
+        }
+
+
     }
 }
